@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="kz.spends.controller.MainController"
+      spacing="10">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <Label text="Жеке шығындар трекері"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10" vgap="8">
+
+        <Label text="Күн:"
+               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <DatePicker fx:id="datePicker"
+                    promptText="Күнді таңдаңыз"
+                    GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Типі:"
+               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <ComboBox fx:id="categoryBox"
+                  prefWidth="200"
+                  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Суммасы (тенге):"
+               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="amountField"
+                   promptText="0.00"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Сипаттама:"
+               GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="descField"
+                   promptText="Асхана, такси..."
+                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    </GridPane>
+
+    <HBox spacing="10">
+        <Button text="Қосу"
+                onAction="#handleAdd"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+        <Button text="Жою"
+                onAction="#handleDelete"
+                style="-fx-background-color: #f44336; -fx-text-fill: white;"/>
+        <Button text="Барлығын көрсету"
+                onAction="#handleShowAll"/>
+        <Button text="Фильтрация"
+                onAction="#handleFilter"/>
+        <Button text="Статистика"
+                onAction="#handleStats"/>
+    </HBox>
+
+    <TableView fx:id="expenseTable"
+               prefHeight="300"
+               VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="dateCol"  text="Күн"        prefWidth="100"/>
+            <TableColumn fx:id="catCol"   text="Типі"      prefWidth="130"/>
+            <TableColumn fx:id="amtCol"   text="Суммасы (тенге)"   prefWidth="100"/>
+            <TableColumn fx:id="descCol"  text="Сипаттама"  prefWidth="220"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="totalLabel"
+           text="Жалпы: 0 тг"
+           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+</VBox>
